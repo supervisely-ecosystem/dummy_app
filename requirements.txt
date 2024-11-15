@@ -1,1 +1,1 @@
-git+https://github.com/supervisely/supervisely.git@dump_state_data
+git+https://github.com/supervisely/supervisely.git@dump-state-data
