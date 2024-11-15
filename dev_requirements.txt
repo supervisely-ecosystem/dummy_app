@@ -1,4 +1,5 @@
-supervisely
+supervisely==6.73.231
 
 # code formatter
 black
+isort

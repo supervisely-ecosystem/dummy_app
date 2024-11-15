@@ -1,14 +1,16 @@
+import os
+from dotenv import load_dotenv
+
 import supervisely as sly
-from supervisely.app.widgets import Container
 
-import src.globals as g
-import src.ui.input as input
-import src.ui.output as output
-import src.ui.settings as settings
+if sly.is_development():
+    load_dotenv("local.env")
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
 
-layout = Container(widgets=[input.card, settings.card, output.card])
+api = sly.Api.from_env()
 
-# * If the app uses static dir, it should be passed as a parameter.
-# * If not needed the app can be initialized without static_dir parameter.
-# * app = sly.Application(layout=layout)
-app = sly.Application(layout=layout, static_dir=g.STATIC_DIR)
+slider = sly.app.widgets.Slider(value=42, min=0, max=100, step=1)
+card = sly.app.widgets.Card("Slider Card", content=slider)
+layout = sly.app.widgets.Container(widgets=[card])
+
+app = sly.Application(layout=layout)
